@@ -7,11 +7,22 @@ import java.net.*;
  */
 
 public class URLReader extends Thread{ 
-  public static void main(String[] args) throws Exception { 
-      URL url = new URL(args[0]); 
-      URLReader[] clientes = new URLReader[20];
-      
-      try (BufferedReader reader = new BufferedReader(
+    
+    
+  private static URL url;
+  
+  
+  private static int numHilos = 20;
+  
+  String contenido;
+  
+  public URLReader(){
+  
+  }
+  
+  @Override
+  public void run(){
+       try (BufferedReader reader = new BufferedReader(
           new InputStreamReader(url.openStream()))) { 
             String inputLine = null; 
             while ((inputLine = reader.readLine()) != null) { 
@@ -19,6 +30,33 @@ public class URLReader extends Thread{
              } 
        } catch (IOException x) { 
                System.err.println(x); 
-       } 
-    } 
+       }
+  }
+  
+  public static void main(String[] args) throws Exception { 
+      url = new URL(args[0]); 
+      numHilos = Integer.parseInt(args[1]); 
+      URLReader[] clientes = new URLReader[numHilos];
+      
+      
+        for (int i = 0; i < numHilos; i++) {
+            clientes[i] = new URLReader();
+        }
+        long startTime = System.nanoTime();
+       for (int i = 0; i < numHilos; i++) {
+            clientes[i].start();
+        }
+      
+       
+        for (int i = 0; i < numHilos; i++) {
+            clientes[i].join();
+            System.out.println("Contenido cliente #" + i + "\n" + clientes[i].contenido);
+            
+        }
+       long elapsedTime = System.nanoTime() - startTime;
+        System.out.printf("Tiempo total: ", (double) elapsedTime/1000000000);
+
+    }
 }
+
+   

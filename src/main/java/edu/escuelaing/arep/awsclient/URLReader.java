@@ -24,9 +24,10 @@ public class URLReader extends Thread{
   public void run(){
        try (BufferedReader reader = new BufferedReader(
           new InputStreamReader(url.openStream()))) { 
+            contenido = "";
             String inputLine = null; 
             while ((inputLine = reader.readLine()) != null) { 
-                  System.out.println(inputLine); 
+                  contenido=contenido+inputLine;
              } 
        } catch (IOException x) { 
                System.err.println(x); 
@@ -50,11 +51,11 @@ public class URLReader extends Thread{
        
         for (int i = 0; i < numHilos; i++) {
             clientes[i].join();
-            System.out.println("Contenido cliente #" + i + "\n" + clientes[i].contenido);
+            System.out.println("Contenido cliente #" + (i+1) + "\n" + clientes[i].contenido);
             
         }
        long elapsedTime = System.nanoTime() - startTime;
-        System.out.printf("Tiempo total: ", (double) elapsedTime/1000000000);
+        System.out.println("Tiempo total: "+ (double) elapsedTime/1000000000);
 
     }
 }

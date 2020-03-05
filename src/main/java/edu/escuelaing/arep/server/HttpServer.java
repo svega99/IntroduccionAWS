@@ -29,7 +29,7 @@ public class HttpServer {
 	
 	
   public static void main(String[] args) throws IOException {
-	  
+	  boolean running=true;
 	  
 	   serverSocket = null;
 	   try { 
@@ -40,7 +40,7 @@ public class HttpServer {
 	   }
            
            threadPool = Executors.newFixedThreadPool(MAX_THREADS);
-	   while(true) {
+	   while(running) {
 		   try {
 		       System.out.println("Listo para recibir ...");
 		       clientSocket = serverSocket.accept();
@@ -58,6 +58,8 @@ public class HttpServer {
                     };
                    threadPool.execute(runnable);
 	   }
+           threadPool.shutdown();
+            serverSocket.close();
            
             
   }

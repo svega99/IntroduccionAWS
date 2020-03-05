@@ -50,11 +50,7 @@ public class HttpServer {
 		   }
                    RequestHandler rh = new RequestHandler(clientSocket);
                     Runnable runnable = () -> {
-                    try {
                         rh.start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     };
                    threadPool.execute(runnable);
 	   }

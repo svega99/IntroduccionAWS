@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.io.FilenameUtils;
@@ -25,7 +27,7 @@ import org.apache.commons.io.FilenameUtils;
  *
  * @author santiago.vega-r
  */
-public class RequestHandler {
+public class RequestHandler extends Thread{
     
     PrintWriter out;
     BufferedReader in;
@@ -37,12 +39,19 @@ public class RequestHandler {
     }
     
     
-    
+    @Override
+    public void run(){
+        try {
+            startServer();
+        } catch (IOException ex) {
+            Logger.getLogger(RequestHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * 
      * @throws IOException 
      */
-    public void start() throws IOException{
+    public void startServer() throws IOException{
         String inputLine, outputLine;
         StringBuilder stringBuilder = new StringBuilder();
 		   

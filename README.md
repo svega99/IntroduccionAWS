@@ -72,7 +72,7 @@ Para compilar desde maven:
 [![Heroku](https://camo.githubusercontent.com/be46aee4f8d55e322c3e7db60ea23a4deb5427c9/68747470733a2f2f6865726f6b752d62616467652e6865726f6b756170702e636f6d2f3f6170703d6865726f6b752d6261646765)](https://shrouded-mesa-15887.herokuapp.com/index.html)
 
 ### Cliente
-Si quiere ejecutar cualquier el cliente desde local debe poner en la linea de comandos desde la ruta del proyecto (como ejemplo se ponen a correr 1o hilos):
+Si quiere ejecutar cualquier el cliente desde local debe poner en la linea de comandos desde la ruta del proyecto (como ejemplo se ponen a correr 10 hilos):
 
 ```
 >  mvn  exec:java -D "edu.escuelaing.arep.awsclient.URLReader" -Dexec.args="https://shrouded-mesa-15887.herokuapp.com/index.html 10"

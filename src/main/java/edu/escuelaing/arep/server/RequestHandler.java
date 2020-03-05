@@ -36,17 +36,11 @@ public class RequestHandler extends Thread{
             clientSocket.getOutputStream(), true);
         in = new BufferedReader(
             new InputStreamReader(clientSocket.getInputStream()));
+        startServer();
     }
     
     
-    @Override
-    public void run(){
-        try {
-            startServer();
-        } catch (IOException ex) {
-            Logger.getLogger(RequestHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
     /**
      * 
      * @throws IOException 

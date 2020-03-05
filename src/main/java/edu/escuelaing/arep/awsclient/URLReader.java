@@ -34,7 +34,7 @@ public class URLReader extends Thread{
        }
   }
   
-  public static void main(String[] args) throws Exception { 
+  public static void main(String[] args) throws MalformedURLException, InterruptedException { 
       url = new URL(args[0]); 
       numHilos = Integer.parseInt(args[1]); 
       URLReader[] clientes = new URLReader[numHilos];

@@ -24,7 +24,7 @@ public class HttpServer {
 	static Socket clientSocket = null;
 	
 	
-        private static ExecutorService threadPool;
+        private static ExecutorService ex;
 
 	
 	
@@ -39,7 +39,7 @@ public class HttpServer {
 	      System.exit(1);
 	   }
            
-           threadPool = Executors.newFixedThreadPool(MAX_THREADS);
+           ex = Executors.newFixedThreadPool(MAX_THREADS);
 	   while(running) {
 		   try {
 		       System.out.println("Listo para recibir ...");
@@ -49,12 +49,10 @@ public class HttpServer {
 		       System.exit(1);
 		   }
                    RequestHandler rh = new RequestHandler(clientSocket);
-                    Runnable runnable = () -> {
-                        rh.start();
-                    };
-                   threadPool.execute(runnable);
+                    ex.execute(rh);
+                 
 	   }
-           threadPool.shutdown();
+           ex.shutdown();
             serverSocket.close();
            
             

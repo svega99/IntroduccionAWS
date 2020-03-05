@@ -6,9 +6,11 @@ import java.net.*;
  * @author santiago.vega-r
  */
 
-public class URLReader { 
+public class URLReader extends Thread{ 
   public static void main(String[] args) throws Exception { 
       URL url = new URL(args[0]); 
+      URLReader[] clientes = new URLReader[20];
+      
       try (BufferedReader reader = new BufferedReader(
           new InputStreamReader(url.openStream()))) { 
             String inputLine = null; 

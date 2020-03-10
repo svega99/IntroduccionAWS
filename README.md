@@ -84,6 +84,11 @@ Si quiere ejecutar cualquier el cliente desde local debe poner en la linea de co
 
 [DISEÑO.pdf](DISEÑO.pdf)
 
+## Evidencia trabajo en clase
+
+[EVIDENCIA.docx](EVIDENCIA.docx)
+
+
 ## Authors
 
 * **Santiago Vega Romero**  - [svega99](https://github.com/svega99)
